@@ -9,7 +9,7 @@ const Banner = () => {
       <div data-src={slider2}>
         <div className="absolute top-48 left-28 space-y-4">
           <p className=" font-bold text-5xl text-blue-600">Children.</p>
-          <p className=" font-bold text-4xl text-blue-600">
+          <p className=" font-bold text-5xl text-blue-600">
             Art & craft School.
           </p>
           <p className="text-slate-700">

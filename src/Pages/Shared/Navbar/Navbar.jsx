@@ -22,7 +22,7 @@ const Navbar = () => {
   );
   return (
     <div className="w-full fixed z-10">
-      <div className="navbar w-11/12 mx-auto rounded-full bg-opacity-40 bg-blue-100">
+      <div className="navbar w-11/12 mx-auto rounded-full p-0 bg-opacity-70 bg-blue-100">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -46,14 +46,18 @@ const Navbar = () => {
               {navOptions}
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl px-8">Art-X</a>
+          <a className="btn btn-ghost normal-case px-8 text-2xl font-bold text-blue-600">
+            Art-X
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="navbar-end mx-8">
-          <Link className="btn border-0 rounded-tl-full rounded-br-full px-8 bg-blue-400 text-white">
-            Login
+          <Link className=" ">
+            <button className="btn btn-sm border-0 rounded-tl-full rounded-br-full px-8 bg-blue-400 text-white">
+              Login
+            </button>
           </Link>
         </div>
       </div>

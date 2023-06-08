@@ -1,10 +1,30 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { useContext } from "react";
+import { AuthContest } from "../../Provider/AuthProvider";
 
 const Register = () => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { userCreate } = useContext(AuthContest);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    userCreate(data?.email, data?.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div>
       <div className="pt-20 min-h-screen bg-base-200">
@@ -47,33 +67,33 @@ const Register = () => {
                   className="p-2 pl-4 border rounded-full border-blue-500"
                 />
                 <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Confirm Password</span>
-                </label>
-                <input
-                  {...register("confirmPassword", {
-                    required: true,
-                    maxLength: 20,
-                  })}
-                  type="password"
-                  placeholder="confirm Password"
-                  className="p-2 pl-4 border rounded-full border-blue-500"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Photo Url</span>
-                </label>
-                <input
-                  {...register("photo", {
-                    required: true,
-                    maxLength: 20,
-                  })}
-                  type="url"
-                  placeholder="photo Url"
-                  className="p-2 pl-4 border rounded-full border-blue-500"
-                />
-              </div>
+                  <label className="label">
+                    <span className="label-text">Confirm Password</span>
+                  </label>
+                  <input
+                    {...register("confirmPassword", {
+                      required: true,
+                      maxLength: 20,
+                    })}
+                    type="password"
+                    placeholder="confirm Password"
+                    className="p-2 pl-4 border rounded-full border-blue-500"
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Photo Url</span>
+                  </label>
+                  <input
+                    {...register("photo", {
+                      required: true,
+                      maxLength: 20,
+                    })}
+                    type="url"
+                    placeholder="photo Url"
+                    className="p-2 pl-4 border rounded-full border-blue-500"
+                  />
+                </div>
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     If you Are New{" "}
@@ -85,7 +105,7 @@ const Register = () => {
                   </a>
                 </label>
               </div>
-              
+
               <div className="form-control mt-2">
                 <button className="btn btn-sm border-0 rounded-tl-full rounded-br-full px-8 bg-blue-500 text-white">
                   Register

@@ -1,5 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { FaGoogle } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 
 // The following component is an example of your existing Input Component
 const Input = ({ label, register, required }) => (
@@ -58,7 +61,12 @@ const Login = () => {
                 />
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
-                    If you have Account <span>PLease login</span>
+                    If you Are New{" "}
+                    <Link to="/register">
+                      <span className="text-blue-600 underline">
+                        PLease Register
+                      </span>
+                    </Link>
                   </a>
                 </label>
               </div>
@@ -67,6 +75,10 @@ const Login = () => {
                   Login
                 </button>
               </div>
+              <div className="divider"> or</div>
+              <button className="w-10 mx-auto h-10 flex items-center justify-center bg-white rounded-full border-2 border-blue-500">
+                <FcGoogle className="text-3xl text-center p-1"></FcGoogle>
+              </button>
             </form>
           </div>
         </div>

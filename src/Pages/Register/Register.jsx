@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
-const Login = () => {
+const Register = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
   return (
@@ -11,16 +11,27 @@ const Login = () => {
         <div className="hero-content ">
           <div className="card w-full max-w-sm shadow-2xl bg-blue-50">
             <h1 className="font-bold text-2xl mt-5 text-center">
-              Please Login
+              Please Register
             </h1>
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  {...register("name", { required: true })}
+                  type="name"
+                  placeholder="Type your Name"
+                  className="p-2 pl-4 border rounded-full border-blue-500"
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
                   {...register("email", { required: true })}
-                  type="emial"
+                  type="email"
                   placeholder="Type your email"
                   className="p-2 pl-4 border rounded-full border-blue-500"
                 />
@@ -35,6 +46,34 @@ const Login = () => {
                   placeholder="password"
                   className="p-2 pl-4 border rounded-full border-blue-500"
                 />
+                <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Confirm Password</span>
+                </label>
+                <input
+                  {...register("confirmPassword", {
+                    required: true,
+                    maxLength: 20,
+                  })}
+                  type="password"
+                  placeholder="confirm Password"
+                  className="p-2 pl-4 border rounded-full border-blue-500"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo Url</span>
+                </label>
+                <input
+                  {...register("photo", {
+                    required: true,
+                    maxLength: 20,
+                  })}
+                  type="url"
+                  placeholder="photo Url"
+                  className="p-2 pl-4 border rounded-full border-blue-500"
+                />
+              </div>
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     If you Are New{" "}
@@ -46,9 +85,10 @@ const Login = () => {
                   </a>
                 </label>
               </div>
+              
               <div className="form-control mt-2">
                 <button className="btn btn-sm border-0 rounded-tl-full rounded-br-full px-8 bg-blue-500 text-white">
-                  Login
+                  Register
                 </button>
               </div>
               <div className="divider"> or</div>
@@ -63,4 +103,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

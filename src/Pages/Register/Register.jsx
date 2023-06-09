@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContest } from "../../Provider/AuthProvider";
 
 const Register = () => {
-  const { userCreate } = useContext(AuthContest);
+  const { userCreate, profileUpdate, googleSignIn } = useContext(AuthContest);
 
   const {
     register,
@@ -20,11 +20,32 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        profileUpdate(user, data?.name, data?.photo);
+        const saveUserDatabase = { name: data?.name, email: data?.email };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(saveUserDatabase),
+        }).then(((res) => res.json()).then((data) => console.log(data)));
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  const handleGoolge = () => {
+    googleSignIn().then((result) => {
+      const user = result.user;
+      console.log(user);
+      const saveUserDatabase = { name: user?.displayName, email: user?.email };
+      fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(saveUserDatabase),
+      });
+    });
+  };
+
   return (
     <div>
       <div className="pt-20 min-h-screen bg-base-200">
@@ -87,7 +108,6 @@ const Register = () => {
                   <input
                     {...register("photo", {
                       required: true,
-                      maxLength: 20,
                     })}
                     type="url"
                     placeholder="photo Url"
@@ -112,7 +132,9 @@ const Register = () => {
                 </button>
               </div>
               <div className="divider"> or</div>
-              <button className="w-10 mx-auto h-10 flex items-center justify-center bg-white rounded-full border-2 border-blue-500">
+              <button
+                onClick={handleGoolge}
+                className="w-10 mx-auto h-10 flex items-center justify-center bg-white rounded-full border-2 border-blue-500">
                 <FcGoogle className="text-3xl text-center p-1"></FcGoogle>
               </button>
             </form>

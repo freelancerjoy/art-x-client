@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Link } from "react-router-dom";
 import ActiveRoute from "../../../Routes/ActiveRoute";
+import { AuthContest } from "../../../Provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOutUser } = useContext(AuthContest);
+
   const navOptions = (
     <>
       <li>
@@ -15,9 +18,11 @@ const Navbar = () => {
       <li>
         <ActiveRoute to="/classes">Classes</ActiveRoute>
       </li>
-      <li>
-        <ActiveRoute to="/dashboard">Dashboard</ActiveRoute>
-      </li>
+      {user && (
+        <li>
+          <ActiveRoute to="/dashboard">Dashboard</ActiveRoute>
+        </li>
+      )}
     </>
   );
   return (
@@ -54,11 +59,26 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="navbar-end mx-8">
-          <Link to="/login" className=" ">
-            <button className="btn btn-sm border-0 rounded-tl-full rounded-br-full px-8 bg-blue-400 text-white">
-              Login
-            </button>
-          </Link>
+          {user ? (
+            <>
+              <img
+                className="w-10 border border-blue-500 mr-5 h-10 rounded-full"
+                src={user?.photoURL}
+                alt=""
+              />
+              <button
+                onClick={logOutUser}
+                className="btn btn-sm border-0 rounded-tl-full rounded-br-full px-8 bg-blue-400 text-white">
+                LogOut
+              </button>
+            </>
+          ) : (
+            <Link to="/login" className=" ">
+              <button className="btn btn-sm border-0 rounded-tl-full rounded-br-full px-8 bg-blue-400 text-white">
+                Login
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

@@ -5,6 +5,8 @@ import AdminHome from "../Dashboard/AdimnHome/AdminHome";
 import Dashboard from "../Dashboard/AdimnHome/Dashboard";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import Allusers from "../Dashboard/AdimnHome/Allusers";
+import AddNewClass from "../Dashboard/Instractor/AddNewClass";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,14 @@ const router = createBrowserRouter([
       {
         path: "adminhome",
         element: <AdminHome></AdminHome>,
+      },
+      {
+        path: "users",
+        element: <Allusers></Allusers>,
+      },
+      {
+        path: "addnewclass",
+        element: <AddNewClass></AddNewClass>,
       },
     ],
   },

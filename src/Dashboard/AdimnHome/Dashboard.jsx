@@ -7,13 +7,15 @@ const Dashboard = () => {
     <div>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
-          <Outlet></Outlet>
+        <div className="drawer-content flex flex-col ">
           <label
             htmlFor="my-drawer-2"
             className="btn btn-primary drawer-button lg:hidden">
             Open drawer
           </label>
+          <div className="pt-20 px-14">
+            <Outlet></Outlet>
+          </div>
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
@@ -31,7 +33,7 @@ const Dashboard = () => {
               <Link to="/dashboard/users">Manage Users</Link>
             </li>
             <li>
-              <Link to="/dashboard/users">Add a Class</Link>
+              <Link to="/dashboard/addnewclass">Add a Class</Link>
             </li>
             <li>
               <Link to="/dashboard/users">My Classes</Link>

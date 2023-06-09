@@ -36,7 +36,7 @@ const Dashboard = () => {
               <Link to="/dashboard/addnewclass">Add a Class</Link>
             </li>
             <li>
-              <Link to="/dashboard/users">My Classes</Link>
+              <Link to="/dashboard/myclasses">My Classes</Link>
             </li>
             <div class="divider"></div>
           </ul>

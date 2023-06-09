@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Allusers from "../Dashboard/AdimnHome/Allusers";
 import AddNewClass from "../Dashboard/Instractor/AddNewClass";
+import MyClasses from "../Dashboard/Instractor/MyClasses";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "addnewclass",
         element: <AddNewClass></AddNewClass>,
+      },
+      {
+        path: "myclasses",
+        element: <MyClasses></MyClasses>,
       },
     ],
   },

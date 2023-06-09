@@ -15,7 +15,15 @@ const AddNewClass = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    const course = { data, status: "pending" };
+    const course = {
+      name: data?.classname,
+      instractorname: data?.instractorname,
+      availablesit: data?.availablesit,
+      email: data?.email,
+      price: data?.price,
+      photo: data?.photo,
+      status: "pending",
+    };
     fetch("http://localhost:5000/addclass", {
       method: "POST",
       headers: { "content-type": "application/json" },

@@ -7,6 +7,15 @@ const Allusers = () => {
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, []);
+  const handleUserPermission = (_id, role) => {
+    fetch(`http://localhost:5000/updateuser/${_id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ role: role }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
   return (
     <div>
       <h1 className="font-bold text-blue-600 text-4xl">
@@ -30,12 +39,23 @@ const Allusers = () => {
                 <th>{index + 1}</th>
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
-                <td>{user?.role}</td>
+                <td
+                  className={`${user?.role === "admin" && "text-green-600"} ${
+                    user?.role === "instractor" && "text-orange-600"
+                  }`}>
+                  {user?.role}
+                </td>
                 <td>
-                  <button className="btn btn-sm bg-orange-600 text-white">
+                  <button
+                    onClick={() =>
+                      handleUserPermission(user?._id, "instractor")
+                    }
+                    className="btn btn-sm bg-orange-600 text-white">
                     Make Instractor
                   </button>
-                  <button className="btn btn-sm bg-green-600 text-white pr-3">
+                  <button
+                    onClick={() => handleUserPermission(user?._id, "admin")}
+                    className="btn btn-sm bg-green-600 text-white pr-3">
                     Make Admin
                   </button>
                 </td>

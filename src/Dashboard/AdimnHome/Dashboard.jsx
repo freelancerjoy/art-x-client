@@ -13,7 +13,7 @@ const Dashboard = () => {
             className="btn btn-primary drawer-button lg:hidden">
             Open drawer
           </label>
-          <div className="pt-20 px-14">
+          <div className="pt-20">
             <Outlet></Outlet>
           </div>
         </div>

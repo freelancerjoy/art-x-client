@@ -9,6 +9,9 @@ import Allusers from "../Dashboard/AdimnHome/Allusers";
 import AddNewClass from "../Dashboard/Instractor/AddNewClass";
 import MyClasses from "../Dashboard/Instractor/MyClasses";
 import ManageAllClass from "../Dashboard/AdimnHome/ManageAllClass";
+import MySelectedClass from "../Dashboard/Student/MySelectedClass";
+import MyEnroledClass from "../Dashboard/Student/MyEnroledClass";
+import Classes from "../Pages/Classes/Classes";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "classes",
+        element: <Classes></Classes>,
       },
       {
         path: "login",
@@ -52,6 +59,14 @@ const router = createBrowserRouter([
       {
         path: "myclasses",
         element: <MyClasses></MyClasses>,
+      },
+      {
+        path: "myslectedclasses",
+        element: <MySelectedClass></MySelectedClass>,
+      },
+      {
+        path: "mynroledclasses",
+        element: <MyEnroledClass></MyEnroledClass>,
       },
     ],
   },

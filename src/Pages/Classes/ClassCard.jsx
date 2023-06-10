@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContest } from "../../Provider/AuthProvider";
 
 const ClassCard = ({ approveClass }) => {
+  const { user } = useContext(AuthContest);
   const {
     _id,
     name,
@@ -12,10 +14,10 @@ const ClassCard = ({ approveClass }) => {
     status,
   } = approveClass;
   const handleSelect = (_id) => {
-    fetch("", {
+    fetch("http://localhost:5000/selectclass", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ _id, payment: null }),
+      body: JSON.stringify({ email: user?.email, payment: null }),
     })
       .then((res) => res.json())
       .then((data) => console.log(data));

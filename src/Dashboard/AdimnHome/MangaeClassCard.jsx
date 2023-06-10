@@ -1,11 +1,25 @@
 import React, { useEffect } from "react";
 
 const MangaeClassCard = ({ singleClass }) => {
-  const { name, photo, email, price, instractorname, availablesit, status } =
-    singleClass;
-  useEffect(() => {
-    fetch();
-  });
+  const {
+    _id,
+    name,
+    photo,
+    email,
+    price,
+    instractorname,
+    availablesit,
+    status,
+  } = singleClass;
+  const handleApprove = (_id, status) => {
+    fetch(`http://localhost:5000/statusclass/${_id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ status: status }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
   return (
     <>
       {/* Class Image, Class name, Instructor name, Instructor email, Available seats, Price, Status(pending/approved/denied) 3 buttons( Approve, Deny and send feedback). */}
@@ -30,15 +44,26 @@ const MangaeClassCard = ({ singleClass }) => {
         <td>{availablesit}</td>
         <td>{price}</td>
         <td>
-          <button className="btn btn-sm bg-yellow-300" disabled>
+          <p
+            className={` ${status === "approved" && "text-green-600"} || ${
+              status === "denied" && "text-red-600"
+            } `}>
             {status}
-          </button>{" "}
-          <button className="btn btn-sm my-2 bg-green-500">Approved</button>
-          <button className="btn btn-sm bg-red-600">Denied</button>
+          </p>{" "}
+          <button
+            onClick={() => handleApprove(_id, "approved")}
+            className="btn btn-sm my-2 bg-green-500">
+            Approved
+          </button>
+          <button
+            onClick={() => handleApprove(_id, "denied")}
+            className="btn btn-sm bg-red-600">
+            Denied
+          </button>
         </td>
         <td>
           {" "}
-          <button className="btn btn-sm bg-blue-500">Sfeedback</button>
+          <button className="btn btn-sm bg-blue-500">feedback</button>
         </td>
       </tr>
     </>

@@ -21,7 +21,11 @@ const Register = () => {
         const user = result.user;
         console.log(user);
         profileUpdate(user, data?.name, data?.photo);
-        const saveUserDatabase = { name: data?.name, email: data?.email };
+        const saveUserDatabase = {
+          name: data?.name,
+          email: data?.email,
+          role: "student",
+        };
         fetch("http://localhost:5000/users", {
           method: "POST",
           headers: { "content-type": "application/json" },
@@ -37,7 +41,11 @@ const Register = () => {
     googleSignIn().then((result) => {
       const user = result.user;
       console.log(user);
-      const saveUserDatabase = { name: user?.displayName, email: user?.email };
+      const saveUserDatabase = {
+        name: user?.displayName,
+        email: user?.email,
+        role: "student",
+      };
       fetch("http://localhost:5000/users", {
         method: "POST",
         headers: { "content-type": "application/json" },

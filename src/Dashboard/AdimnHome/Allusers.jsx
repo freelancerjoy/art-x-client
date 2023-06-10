@@ -20,6 +20,7 @@ const Allusers = () => {
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Status</th>
               <th>Role</th>
             </tr>
           </thead>
@@ -29,9 +30,14 @@ const Allusers = () => {
                 <th>{index + 1}</th>
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
+                <td>{user?.role}</td>
                 <td>
-                  <button className="btn btn-sm">Admin</button>
-                  <button className="btn btn-sm">Instractor</button>
+                  <button className="btn btn-sm bg-orange-600 text-white">
+                    Make Instractor
+                  </button>
+                  <button className="btn btn-sm bg-green-600 text-white pr-3">
+                    Make Admin
+                  </button>
                 </td>
               </tr>
             ))}

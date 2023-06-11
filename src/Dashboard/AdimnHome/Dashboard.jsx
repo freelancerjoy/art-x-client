@@ -2,9 +2,13 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import useAdmin from "../../Hooks/useAdmin";
+import useInstractor from "../../Hooks/useInstractor";
+import useStudent from "../../Hooks/UseStudent";
 
 const Dashboard = () => {
   const [isAdmin, isAdminLoading] = useAdmin();
+  const [isInstractor, isInstractorLoading] = useInstractor();
+  const [isStudent, isStudentLoading] = useStudent();
   console.log(isAdmin);
   return (
     <div>
@@ -39,18 +43,32 @@ const Dashboard = () => {
                 </li>
               </>
             )}
-            <li>
-              <Link to="/dashboard/addnewclass">Add a Class</Link>
-            </li>
-            <li>
-              <Link to="/dashboard/myclasses">My Classes</Link>
-            </li>
-            <li>
-              <Link to="/dashboard/myslectedclasses">My Selected Classes</Link>
-            </li>
-            <li>
-              <Link to="/dashboard/mynroledclasses">My Enroled Classes</Link>
-            </li>
+            {isInstractor?.instractor === true && (
+              <>
+                <li>
+                  <Link to="/dashboard/addnewclass">Add a Class</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/myclasses">My Classes</Link>
+                </li>
+              </>
+            )}
+
+            {isStudent.student === true && (
+              <>
+                <li>
+                  <Link to="/dashboard/myslectedclasses">
+                    My Selected Classes
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/mynroledclasses">
+                    My Enroled Classes
+                  </Link>
+                </li>
+              </>
+            )}
+
             <div class="divider"></div>
           </ul>
         </div>

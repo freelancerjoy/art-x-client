@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 
 const Allusers = () => {
   const [users, setUsers] = useState();
+  const [relode, setrelode] = useState(false);
   useEffect(() => {
     fetch("http://localhost:5000/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
-  }, []);
+  }, [relode]);
+
   const handleUserPermission = (_id, role) => {
     fetch(`http://localhost:5000/updateuser/${_id}`, {
       method: "PATCH",
@@ -14,8 +16,13 @@ const Allusers = () => {
       body: JSON.stringify({ role: role }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        setrelode(!false);
+      });
   };
+  console.log(users);
+  console.log(relode);
   return (
     <div>
       <h1 className="font-bold text-blue-600 text-4xl">
@@ -50,11 +57,13 @@ const Allusers = () => {
                     onClick={() =>
                       handleUserPermission(user?._id, "instractor")
                     }
+                    disabled={user?.role === "instractor" && true}
                     className="btn btn-sm bg-orange-600 text-white">
                     Make Instractor
                   </button>
                   <button
                     onClick={() => handleUserPermission(user?._id, "admin")}
+                    disabled={user?.role === "admin" && true}
                     className="btn btn-sm bg-green-600 text-white pr-3">
                     Make Admin
                   </button>

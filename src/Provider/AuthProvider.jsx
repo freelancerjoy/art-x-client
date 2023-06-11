@@ -18,16 +18,19 @@ export const AuthContest = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   console.log(user);
 
   // user create email and password
   const userCreate = (email, password) => {
     console.log(email, password);
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // update Profile
   const profileUpdate = (user, name, photoUrl) => {
+    setLoading(true);
     updateProfile(user, {
       displayName: name,
       photoURL: photoUrl,
@@ -36,20 +39,24 @@ const AuthProvider = ({ children }) => {
 
   // sign in email and password
   const signIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   // Google SignIn
   const googleSignIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   // logout user
   const logOutUser = () => {
+    setLoading(true);
     signOut(auth);
   };
   const authInfo = {
     user,
+    loading,
     signIn,
     userCreate,
     profileUpdate,
@@ -60,9 +67,10 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => unsubscribe();
-  });
+  }, []);
 
   return (
     <AuthContest.Provider value={authInfo}>{children}</AuthContest.Provider>

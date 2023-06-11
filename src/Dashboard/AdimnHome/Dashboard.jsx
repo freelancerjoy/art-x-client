@@ -1,8 +1,11 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Dashboard = () => {
+  const [isAdmin, isAdminLoading] = useAdmin();
+  console.log(isAdmin);
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -26,12 +29,16 @@ const Dashboard = () => {
                 <FaHome></FaHome> Home
               </Link>
             </li>
-            <li>
-              <Link to="/dashboard/manageclases">Manage Classes</Link>
-            </li>
-            <li>
-              <Link to="/dashboard/users">Manage Users</Link>
-            </li>
+            {isAdmin?.admin === true && (
+              <>
+                <li>
+                  <Link to="/dashboard/manageclases">Manage Classes</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/users">Manage Users</Link>
+                </li>
+              </>
+            )}
             <li>
               <Link to="/dashboard/addnewclass">Add a Class</Link>
             </li>

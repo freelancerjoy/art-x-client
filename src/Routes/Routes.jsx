@@ -12,6 +12,8 @@ import ManageAllClass from "../Dashboard/AdimnHome/ManageAllClass";
 import MySelectedClass from "../Dashboard/Student/MySelectedClass";
 import MyEnroledClass from "../Dashboard/Student/MyEnroledClass";
 import Classes from "../Pages/Classes/Classes";
+import AdminRoute from "./AdminRoute";
+import InstractorRoute from "./InstractorRoute";
 
 const router = createBrowserRouter([
   {
@@ -42,11 +44,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "adminhome",
-        element: <AdminHome></AdminHome>,
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
       },
       {
         path: "users",
-        element: <Allusers></Allusers>,
+        element: (
+          <AdminRoute>
+            <Allusers></Allusers>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageclases",
@@ -54,7 +64,11 @@ const router = createBrowserRouter([
       },
       {
         path: "addnewclass",
-        element: <AddNewClass></AddNewClass>,
+        element: (
+          <InstractorRoute>
+            <AddNewClass></AddNewClass>
+          </InstractorRoute>
+        ),
       },
       {
         path: "myclasses",

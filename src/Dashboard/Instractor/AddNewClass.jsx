@@ -23,6 +23,7 @@ const AddNewClass = () => {
       price: data?.price,
       photo: data?.photo,
       status: "pending",
+      enrolled: 0,
     };
     fetch("http://localhost:5000/addclass", {
       method: "POST",

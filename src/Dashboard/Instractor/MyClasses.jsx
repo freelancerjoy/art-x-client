@@ -9,7 +9,7 @@ const MyClasses = () => {
     fetch(`http://localhost:5000/classes?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyclasses(data));
-  }, []);
+  }, [user]);
   return (
     <div>
       <h1 className="font-bold text-2xl my-4 text-blue-600">

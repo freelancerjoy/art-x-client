@@ -17,7 +17,17 @@ const ClassCard = ({ approveClass }) => {
     fetch("http://localhost:5000/selectclass", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ email: user?.email, payment: null }),
+      body: JSON.stringify({
+        selected_id: _id,
+        email: user?.email,
+        payment: null,
+        name,
+        photo,
+        price,
+        instractorname,
+        availablesit,
+        status,
+      }),
     })
       .then((res) => res.json())
       .then((data) => console.log(data));

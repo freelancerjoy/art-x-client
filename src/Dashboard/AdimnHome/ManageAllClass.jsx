@@ -3,11 +3,13 @@ import MangaeClassCard from "./MangaeClassCard";
 
 const ManageAllClass = () => {
   const [allClasses, setAllclasses] = useState();
+
   useEffect(() => {
     fetch("http://localhost:5000/allclasses")
       .then((res) => res.json())
       .then((data) => setAllclasses(data));
-  });
+  }),
+    [];
   return (
     <div className="w-11/12 mx-auto">
       <div className="overflow-x-auto max-h-max w-full">
@@ -28,6 +30,7 @@ const ManageAllClass = () => {
               <th>Available seats</th>
               <th>Price</th>
               <th>Status</th>
+              <th>Action</th>
               <th>feedback</th>
             </tr>
           </thead>

@@ -24,8 +24,10 @@ const Register = () => {
         const saveUserDatabase = {
           name: data?.name,
           email: data?.email,
+          photo: data?.photo,
           role: "student",
         };
+
         fetch("https://art-x-server.vercel.app/users", {
           method: "POST",
           headers: { "content-type": "application/json" },
@@ -44,8 +46,10 @@ const Register = () => {
       const saveUserDatabase = {
         name: user?.displayName,
         email: user?.email,
+        photo: user?.photoURL,
         role: "student",
       };
+      console.log(user?.photoURL);
       fetch("https://art-x-server.vercel.app/users", {
         method: "POST",
         headers: { "content-type": "application/json" },

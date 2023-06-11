@@ -13,7 +13,7 @@ const Navbar = () => {
         <ActiveRoute to="/">Home</ActiveRoute>
       </li>
       <li>
-        <ActiveRoute to="/instructors">Instructors</ActiveRoute>
+        <ActiveRoute to="/instractors">Instructors</ActiveRoute>
       </li>
       <li>
         <ActiveRoute to="/classes">Classes</ActiveRoute>

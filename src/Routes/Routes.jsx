@@ -14,6 +14,7 @@ import MyEnroledClass from "../Dashboard/Student/MyEnroledClass";
 import Classes from "../Pages/Classes/Classes";
 import AdminRoute from "./AdminRoute";
 import InstractorRoute from "./InstractorRoute";
+import InstratorPage from "../Pages/InstratorPage/InstratorPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "instractors",
+        element: <InstratorPage></InstratorPage>,
       },
       {
         path: "classes",

@@ -11,8 +11,8 @@ const ManageAllClass = () => {
   }),
     [];
   return (
-    <div className="w-11/12 mx-auto">
-      <div className="overflow-x-auto max-h-max w-full">
+    <div className="">
+      <div className="overflow-x-scroll max-w-screen-md  max-h-max w-full">
         <table className="table w-full border-2 border-blue-200 border-dashed">
           {/* head */}
           <thead>

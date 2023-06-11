@@ -10,8 +10,8 @@ const ClassSingleCard = ({ myClass }) => {
     instractorname,
     availablesit,
     status,
-    enrolled,
-  } = myClass;
+    enrolled
+  } = singleClass;
   return (
     <div>
       <div className="card w-96 bg-base-100 shadow-xl">

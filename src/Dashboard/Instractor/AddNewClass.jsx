@@ -24,6 +24,7 @@ const AddNewClass = () => {
       photo: data?.photo,
       status: "pending",
       enrolled: 0,
+      feedback: null,
     };
     fetch("https://art-x-server.vercel.app/addclass", {
       method: "POST",

@@ -20,6 +20,7 @@ const MangaeClassCard = ({ singleClass }) => {
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
+  const handleFeedback = (_id) => {};
   return (
     <>
       {/* Class Image, Class name, Instructor name, Instructor email, Available seats, Price, Status(pending/approved/denied) 3 buttons( Approve, Deny and send feedback). */}

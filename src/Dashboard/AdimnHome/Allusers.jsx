@@ -4,13 +4,13 @@ const Allusers = () => {
   const [users, setUsers] = useState();
   const [relode, setrelode] = useState(false);
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://art-x-server.vercel.app/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [relode]);
 
   const handleUserPermission = (_id, role) => {
-    fetch(`http://localhost:5000/updateuser/${_id}`, {
+    fetch(`https://art-x-server.vercel.app/updateuser/${_id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ role: role }),

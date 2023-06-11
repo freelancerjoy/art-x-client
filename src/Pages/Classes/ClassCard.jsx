@@ -14,7 +14,7 @@ const ClassCard = ({ approveClass }) => {
     status,
   } = approveClass;
   const handleSelect = (_id) => {
-    fetch("http://localhost:5000/selectclass", {
+    fetch("https://art-x-server.vercel.app/selectclass", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({

@@ -26,7 +26,7 @@ const Register = () => {
           email: data?.email,
           role: "student",
         };
-        fetch("http://localhost:5000/users", {
+        fetch("https://art-x-server.vercel.app/users", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(saveUserDatabase),
@@ -46,7 +46,7 @@ const Register = () => {
         email: user?.email,
         role: "student",
       };
-      fetch("http://localhost:5000/users", {
+      fetch("https://art-x-server.vercel.app/users", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(saveUserDatabase),

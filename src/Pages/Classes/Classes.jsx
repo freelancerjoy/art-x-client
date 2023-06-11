@@ -4,7 +4,7 @@ import ClassCard from "./ClassCard";
 const Classes = () => {
   const [allClass, setAllClass] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/allclasses")
+    fetch("https://art-x-server.vercel.app/allclasses")
       .then((res) => res.json())
       .then((data) => setAllClass(data));
   }, []);

@@ -9,7 +9,7 @@ const MySelectedClass = () => {
   const [selectedClasses, setClasses] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/selectclass?email=${user?.email}`)
+    fetch(`https://art-x-server.vercel.app/selectclass?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, [user]);

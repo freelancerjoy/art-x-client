@@ -12,7 +12,7 @@ const MangaeClassCard = ({ singleClass }) => {
     status,
   } = singleClass;
   const handleApprove = (_id, status) => {
-    fetch(`http://localhost:5000/statusclass/${_id}`, {
+    fetch(`https://art-x-server.vercel.app/statusclass/${_id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ status: status }),
@@ -43,14 +43,15 @@ const MangaeClassCard = ({ singleClass }) => {
         <td>{email}</td>
         <td>{availablesit}</td>
         <td>{price}</td>
-        <td><p
+        <td>
+          <p
             className={` ${status === "approved" && "text-green-600"} || ${
               status === "denied" && "text-red-600"
             } `}>
             {status}
-          </p>{" "}</td>
+          </p>{" "}
+        </td>
         <td>
-          
           <button
             onClick={() => handleApprove(_id, "approved")}
             disabled={status === "approved" && true}

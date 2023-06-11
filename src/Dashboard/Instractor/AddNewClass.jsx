@@ -25,7 +25,7 @@ const AddNewClass = () => {
       status: "pending",
       enrolled: 0,
     };
-    fetch("http://localhost:5000/addclass", {
+    fetch("https://art-x-server.vercel.app/addclass", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(course),

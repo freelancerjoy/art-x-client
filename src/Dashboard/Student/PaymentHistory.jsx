@@ -10,7 +10,7 @@ const PaymentHistory = () => {
   const [payment, setPayment] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/paymentsucces?email=${user?.email}`)
+    fetch(`https://art-x-server.vercel.app/paymentsucces?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setPayment(data));
   }, []);

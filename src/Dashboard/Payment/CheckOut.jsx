@@ -12,7 +12,7 @@ const CheckOut = ({ price, stateData }) => {
   const [allClasses, setAllClass] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://art-x-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ price }),
@@ -75,7 +75,7 @@ const CheckOut = ({ price, stateData }) => {
       setpaymrntSucces(paymentIntent.id);
 
       fetch(
-        `http://localhost:5000/selectclass/${stateData?._id}?email=${user?.email}`,
+        `https://art-x-server.vercel.app/selectclass/${stateData?._id}?email=${user?.email}`,
         {
           method: "PATCH",
           headers: { "content-type": "application/json" },
@@ -85,18 +85,21 @@ const CheckOut = ({ price, stateData }) => {
         .then((res) => res.json())
         .then((data) => console.log(data));
       // Avavble seet less
-      fetch(`http://localhost:5000/enrolled/${stateData?.selected_id}`, {
-        method: "PATCH",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          availablesit: updateClass.availablesit,
-          enrolled: updateClass.enrolled,
-        }),
-      })
+      fetch(
+        `https://art-x-server.vercel.app/enrolled/${stateData?.selected_id}`,
+        {
+          method: "PATCH",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            availablesit: updateClass.availablesit,
+            enrolled: updateClass.enrolled,
+          }),
+        }
+      )
         .then((res) => res.json())
         .then((data) => console.log(data));
       // Payment save
-      fetch(`http://localhost:5000/paymentsucces`, {
+      fetch(`https://art-x-server.vercel.app/paymentsucces`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({

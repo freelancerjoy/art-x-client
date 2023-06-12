@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { AuthContest } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const ClassCard = ({ approveClass, isAdmin, isInstractor }) => {
   const { user } = useContext(AuthContest);
+
   const {
     _id,
     name,
@@ -16,7 +18,15 @@ const ClassCard = ({ approveClass, isAdmin, isInstractor }) => {
   } = approveClass;
   console.log(select);
   const handleSelect = (_id) => {
-    fetch(`http://localhost:5000/selectclass?email=${user?.email}`, {
+    if (!user) {
+      Swal.fire({
+        icon: "info",
+        title: "Please Login",
+        text: "You can see after login!",
+      });
+    }
+
+    fetch(`https://art-x-server.vercel.app/selectclass?email=${user?.email}`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -35,7 +45,7 @@ const ClassCard = ({ approveClass, isAdmin, isInstractor }) => {
       .then((res) => res.json())
       .then((data) => console.log(data));
 
-    // fetch("http://localhost:5000/selectclass", {
+    // fetch("https://art-x-server.vercel.app/selectclass", {
     //   method: "POST",
     //   headers: { "content-type": "application/json" },
     //   body: JSON.stringify({

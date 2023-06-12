@@ -9,7 +9,7 @@ const Classes = () => {
   const [allClass, setAllClass] = useState([]);
   const [isAdmin] = useAdmin();
   const [isInstractor] = useInstractor();
-  const [ axiosSecure]= useAxios()
+  const [axiosSecure] = useAxios();
 
   useEffect(() => {
     axiosSecure("allclasses").then((response) => {

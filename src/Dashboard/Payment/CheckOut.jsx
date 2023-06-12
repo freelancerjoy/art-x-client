@@ -117,30 +117,32 @@ const CheckOut = ({ price, stateData }) => {
   return (
     <>
       {" "}
-      <form className="w-1/2" onSubmit={handleSubmit}>
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
-                  color: "#aab7c4",
+      <div className="bg-blue-50 p-5 lg:p-20 rounded-lg w-full ">
+        <form className="w-1/2" onSubmit={handleSubmit}>
+          <CardElement
+            options={{
+              style: {
+                base: {
+                  fontSize: "16px",
+                  color: "#424770",
+                  "::placeholder": {
+                    color: "#aab7c4",
+                  },
+                },
+                invalid: {
+                  color: "#9e2146",
                 },
               },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        />
-        <button
-          className="btn btn-sm border-0 rounded-tl-full rounded-br-full px-8 mt-8 bg-blue-500 text-white"
-          type="submit"
-          disabled={!stripe || !clientSecret}>
-          Pay
-        </button>
-      </form>
+            }}
+          />
+          <button
+            className="btn btn-sm border-0 rounded-tl-full rounded-br-full px-8 mt-8 bg-blue-500 text-white"
+            type="submit"
+            disabled={!stripe || !clientSecret}>
+            Pay
+          </button>
+        </form>
+      </div>
       {cardError && <p className="text-red-600">{cardError}</p>}
       {paymrntSucces && (
         <p className="text-green-600">

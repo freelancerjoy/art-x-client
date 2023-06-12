@@ -11,6 +11,7 @@ const SelectedClassRow = ({ singleClass }) => {
     instractorname,
     availablesit,
     status,
+    payment,
   } = singleClass;
   const queryParam = new URLSearchParams(singleClass).toString();
   return (
@@ -31,13 +32,19 @@ const SelectedClassRow = ({ singleClass }) => {
       </td>
       <td>{name}</td>
       <td>{instractorname}</td>
-      <td>{availablesit}</td>
-      <td>{price}</td>
+      {!payment && <td>{availablesit}</td>}
+      <td className="text-right">$ {price}</td>
       <td>
-        <Link to={`/dashboard/payment?${queryParam}`}>
-          <button className="btn btn-sm my-2 bg-green-500">Pay</button>
-        </Link>
-        <button className="btn btn-sm bg-red-600">Delete</button>
+        {payment ? (
+          <p className="text-green-700 font-bold"> Enrolled</p>
+        ) : (
+          <>
+            <Link to={`/dashboard/payment?${queryParam}`}>
+              <button className="btn btn-sm my-2 bg-green-500">Pay</button>
+            </Link>
+            <button className="btn btn-sm bg-red-600">Delete</button>
+          </>
+        )}
       </td>
     </tr>
   );

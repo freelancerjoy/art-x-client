@@ -35,24 +35,24 @@ const ClassCard = ({ approveClass, isAdmin, isInstractor }) => {
       .then((res) => res.json())
       .then((data) => console.log(data));
 
-    fetch("http://localhost:5000/selectclass", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        email: user?.email,
-        selected_id: _id,
-        payment: null,
-        name,
-        photo,
-        price,
-        instractorname,
-        availablesit,
-        status,
-        select: "selected",
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    // fetch("http://localhost:5000/selectclass", {
+    //   method: "POST",
+    //   headers: { "content-type": "application/json" },
+    //   body: JSON.stringify({
+    //     email: user?.email,
+    //     selected_id: _id,
+    //     payment: null,
+    //     name,
+    //     photo,
+    //     price,
+    //     instractorname,
+    //     availablesit,
+    //     status,
+    //     select: "selected",
+    //   }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data));
   };
   return (
     <div>

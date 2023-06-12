@@ -14,7 +14,6 @@ const useInstractor = () => {
       return res.json();
     },
   });
-  console.log(isInstractor);
   return [isInstractor, isInstractorLoading];
 };
 export default useInstractor;

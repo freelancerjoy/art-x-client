@@ -5,6 +5,15 @@ import useAdmin from "../../Hooks/useAdmin";
 import useInstractor from "../../Hooks/useInstractor";
 import useStudent from "../../Hooks/UseStudent";
 
+import {
+  AiFillCloud,
+  AiFillCrown,
+  AiFillEdit,
+  AiFillUnlock,
+  AiOutlineAppstoreAdd,
+  AiOutlineUsergroupAdd,
+} from "react-icons/ai";
+
 const Dashboard = () => {
   const [isAdmin, isAdminLoading] = useAdmin();
   const [isInstractor, isInstractorLoading] = useInstractor();
@@ -36,20 +45,29 @@ const Dashboard = () => {
             {isAdmin?.admin === true && (
               <>
                 <li>
-                  <Link to="/dashboard/manageclases">Manage Classes</Link>
+                  <Link to="/dashboard/manageclases">
+                    <AiFillUnlock></AiFillUnlock> Manage Classes
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/dashboard/users">Manage Users</Link>
+                  <Link to="/dashboard/users">
+                    <AiOutlineUsergroupAdd></AiOutlineUsergroupAdd> Manage Users
+                  </Link>
                 </li>
               </>
             )}
             {isInstractor?.instractor === true && (
               <>
                 <li>
-                  <Link to="/dashboard/addnewclass">Add a Class</Link>
+                  <Link to="/dashboard/addnewclass">
+                    <AiOutlineAppstoreAdd></AiOutlineAppstoreAdd> Add a Class
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/dashboard/myclasses">My Classes</Link>
+                  <Link to="/dashboard/myclasses">
+                    {" "}
+                    <AiFillCloud></AiFillCloud>My Classes
+                  </Link>
                 </li>
               </>
             )}
@@ -58,12 +76,12 @@ const Dashboard = () => {
               <>
                 <li>
                   <Link to="/dashboard/myslectedclasses">
-                    My Selected Classes
+                    <AiFillEdit></AiFillEdit> My Selected Classes
                   </Link>
                 </li>
                 <li>
                   <Link to="/dashboard/mynroledclasses">
-                    My Enroled Classes
+                    <AiFillCrown></AiFillCrown> My Enroled Classes
                   </Link>
                 </li>
               </>

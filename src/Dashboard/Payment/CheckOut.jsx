@@ -1,14 +1,15 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContest } from "../../Provider/AuthProvider";
-
-const CheckOut = ({ price }) => {
+import classUpdateStudent from "../../Hooks/classUpdateStudent";
+const CheckOut = ({ price, stateData }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContest);
   const [cardError, setCardError] = useState();
   const [clientSecret, setClientSecret] = useState();
   const [paymrntSucces, setpaymrntSucces] = useState();
+  const [allClasses, setAllClass] = useState();
 
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {
@@ -19,6 +20,19 @@ const CheckOut = ({ price }) => {
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
   }, [price]);
+
+  useEffect(() => {
+    fetch(`https://art-x-server.vercel.app/allclasses`)
+      .then((res) => res.json())
+      .then((data) => setAllClass(data));
+  }, []);
+
+  const updateClass = allClasses?.find(
+    (cl) => cl._id === stateData?.selected_id
+  );
+
+  console.log(updateClass);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!stripe || !elements) {
@@ -59,6 +73,28 @@ const CheckOut = ({ price }) => {
     console.log(paymentIntent);
     if (paymentIntent.status === "succeeded") {
       setpaymrntSucces(paymentIntent.id);
+
+      fetch(
+        `http://localhost:5000/selectclass/${stateData?._id}?email=${user?.email}`,
+        {
+          method: "PATCH",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ payment: "succesed" }),
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+      // Avavble seet less
+      fetch(`http://localhost:5000/enrolled/${stateData?.selected_id}`, {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          availablesit: updateClass.availablesit,
+          enrolled: updateClass.enrolled,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
     }
   };
 

@@ -25,6 +25,7 @@ const AddNewClass = () => {
       status: "pending",
       enrolled: 0,
       feedback: null,
+      select: null,
     };
     fetch("https://art-x-server.vercel.app/addclass", {
       method: "POST",

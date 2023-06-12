@@ -15,6 +15,7 @@ import Classes from "../Pages/Classes/Classes";
 import AdminRoute from "./AdminRoute";
 import InstractorRoute from "./InstractorRoute";
 import InstratorPage from "../Pages/InstratorPage/InstratorPage";
+import Payment from "../Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: "mynroledclasses",
         element: <MyEnroledClass></MyEnroledClass>,
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
       },
     ],
   },

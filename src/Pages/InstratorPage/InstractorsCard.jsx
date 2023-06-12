@@ -4,7 +4,7 @@ const InstractorsCard = ({ instrator }) => {
   const { photo, name, email } = instrator;
   return (
     <div>
-      <div className="card card-compact w-96 bg-base-100 shadow-xl">
+      <div className="card card-compact w-96 h-96 bg-base-100 shadow-xl">
         <figure>
           <img src={photo} alt="Shoes" />
         </figure>
@@ -12,7 +12,7 @@ const InstractorsCard = ({ instrator }) => {
           <h2 className="card-title">{name}</h2>
           <p>{email}</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">See Class</button>
+            <button className="btn btn-sm border-0 rounded-tl-full rounded-br-full px-8 bg-blue-400 text-white">See Class</button>
           </div>
         </div>
       </div>

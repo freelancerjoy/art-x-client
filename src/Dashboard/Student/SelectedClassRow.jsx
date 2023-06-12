@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SelectedClassRow = ({ singleClass }) => {
   const {
@@ -11,6 +12,7 @@ const SelectedClassRow = ({ singleClass }) => {
     availablesit,
     status,
   } = singleClass;
+  const queryParam = new URLSearchParams(singleClass).toString();
   return (
     <tr>
       <th>
@@ -32,7 +34,9 @@ const SelectedClassRow = ({ singleClass }) => {
       <td>{availablesit}</td>
       <td>{price}</td>
       <td>
-        <button className="btn btn-sm my-2 bg-green-500">Pay</button>
+        <Link to={`/dashboard/payment?${queryParam}`}>
+          <button className="btn btn-sm my-2 bg-green-500">Pay</button>
+        </Link>
         <button className="btn btn-sm bg-red-600">Delete</button>
       </td>
     </tr>

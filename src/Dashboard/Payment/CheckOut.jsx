@@ -8,6 +8,7 @@ const CheckOut = ({ price }) => {
   const { user } = useContext(AuthContest);
   const [cardError, setCardError] = useState();
   const [clientSecret, setClientSecret] = useState();
+  const [paymrntSucces, setpaymrntSucces] = useState();
 
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {
@@ -56,12 +57,15 @@ const CheckOut = ({ price }) => {
       console.log(ConfirmError);
     }
     console.log(paymentIntent);
+    if (paymentIntent.status === "succeeded") {
+      setpaymrntSucces(paymentIntent.id);
+    }
   };
 
   return (
     <>
       {" "}
-      <form onSubmit={handleSubmit}>
+      <form className="w-1/2" onSubmit={handleSubmit}>
         <CardElement
           options={{
             style: {
@@ -78,11 +82,19 @@ const CheckOut = ({ price }) => {
             },
           }}
         />
-        <button type="submit" disabled={!stripe}>
+        <button
+          className="btn btn-sm border-0 rounded-tl-full rounded-br-full px-8 mt-8 bg-blue-500 text-white"
+          type="submit"
+          disabled={!stripe || !clientSecret}>
           Pay
         </button>
       </form>
-      <p className="text-red-600">{cardError}</p>
+      {cardError && <p className="text-red-600">{cardError}</p>}
+      {paymrntSucces && (
+        <p className="text-green-600">
+          Succcesl ful payment you trasition Id : {paymrntSucces}
+        </p>
+      )}
     </>
   );
 };

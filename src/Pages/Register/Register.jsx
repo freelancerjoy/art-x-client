@@ -4,11 +4,15 @@ import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContest } from "../../Provider/AuthProvider";
 import { useState } from "react";
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 const Register = () => {
   const { userCreate, profileUpdate, googleSignIn } = useContext(AuthContest);
   const [error, setEror] = useState("");
-
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const {
     register,
     handleSubmit,
@@ -18,6 +22,18 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    setEror("");
+    if (
+      !/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(
+        data?.password
+      )
+    ) {
+      setEror(
+        "Password must be at least 6 characters long and contain at least one uppercase letter, one digit, and one special character."
+      );
+      return;
+    }
+
     if (data?.password !== data?.confirmPassword) {
       setEror("Password not matching");
       return;
@@ -114,10 +130,19 @@ const Register = () => {
                       required: true,
                       maxLength: 20,
                     })}
-                    type="password"
+                    type={!showPassword ? "password" : "text"}
                     placeholder="confirm Password"
                     className="p-2 pl-4 border rounded-full border-blue-500"
                   />
+                  <button
+                    className="-mt-7 ml-72 text-lg"
+                    onClick={togglePasswordVisibility}>
+                    {showPassword ? (
+                      <BsEyeSlashFill></BsEyeSlashFill>
+                    ) : (
+                      <BsEyeFill></BsEyeFill>
+                    )}
+                  </button>
                 </div>
                 <div className="form-control">
                   <label className="label">

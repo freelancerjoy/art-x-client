@@ -70,12 +70,6 @@ const Dashboard = () => {
                     <AiFillCloud></AiFillCloud>My Classes
                   </Link>
                 </li>
-                <li>
-                  <Link to="/dashboard/myclasses">
-                    {" "}
-                    <AiFillCloud></AiFillCloud>My Classes
-                  </Link>
-                </li>
               </>
             )}
 

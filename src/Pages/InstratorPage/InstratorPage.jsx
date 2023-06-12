@@ -13,7 +13,7 @@ const InstratorPage = () => {
   console.log(instrators);
   return (
     <div className="w-11/12 mx-auto pt-32">
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid lg:grid-cols-3 grid-cols-1 gap-8">
         {instrators?.map((instrator) => (
           <InstractorsCard
             key={instrator?._id}

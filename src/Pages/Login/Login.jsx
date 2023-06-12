@@ -1,14 +1,27 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContest } from "../../Provider/AuthProvider";
 import { useContext } from "react";
+import { useState } from "react";
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 const Login = () => {
   const { signIn, googleSignIn } = useContext(AuthContest);
   const { register, handleSubmit } = useForm();
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
-    signIn(data?.email, data?.password);
+    signIn(data?.email, data?.password).then((result) => {
+      const user = result.user;
+      navigate(from);
+    });
   };
 
   const handleGoolge = () => {
@@ -22,6 +35,7 @@ const Login = () => {
         role: "student",
       };
       console.log(user?.photoURL);
+      navigate(from);
       fetch("https://art-x-server.vercel.app/users", {
         method: "POST",
         headers: { "content-type": "application/json" },
@@ -56,11 +70,20 @@ const Login = () => {
                 </label>
                 <input
                   {...register("password", { required: true, maxLength: 20 })}
-                  type="password"
+                  type={!showPassword ? "password" : "text"}
                   placeholder="password"
                   className="p-2 pl-4 border rounded-full border-blue-500"
                 />
-                <label className="label">
+                <button
+                  className="-mt-7 ml-72 text-lg"
+                  onClick={togglePasswordVisibility}>
+                  {showPassword ? (
+                    <BsEyeSlashFill></BsEyeSlashFill>
+                  ) : (
+                    <BsEyeFill></BsEyeFill>
+                  )}
+                </button>
+                <label className="label mt-5">
                   <a href="#" className="label-text-alt link link-hover">
                     If you Are New{" "}
                     <Link to="/register">

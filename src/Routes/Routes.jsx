@@ -16,11 +16,15 @@ import InstractorRoute from "./InstractorRoute";
 import InstratorPage from "../Pages/InstratorPage/InstratorPage";
 import Payment from "../Dashboard/Payment/Payment";
 import Dashboard from "../Dashboard/Dashboard";
+import PrivetRoute from "./PrivetRoute";
+import PaymentHistory from "../Dashboard/Student/PaymentHistory";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -46,7 +50,11 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivetRoute>
+        <Dashboard></Dashboard>
+      </PrivetRoute>
+    ),
     children: [
       {
         path: "adminhome",
@@ -66,15 +74,28 @@ const router = createBrowserRouter([
       },
       {
         path: "manageclases",
-        element: <ManageAllClass></ManageAllClass>,
+        element: (
+          <AdminRoute>
+            <ManageAllClass></ManageAllClass>
+          </AdminRoute>
+        ),
       },
       {
         path: "addnewclass",
-        element: <AddNewClass></AddNewClass>,
+        element: (
+          <InstractorRoute>
+            <AddNewClass></AddNewClass>
+          </InstractorRoute>
+        ),
       },
       {
         path: "myclasses",
-        element: <MyClasses></MyClasses>,
+        element: (
+          <InstractorRoute>
+            {" "}
+            <MyClasses></MyClasses>
+          </InstractorRoute>
+        ),
       },
       {
         path: "myslectedclasses",
@@ -87,6 +108,10 @@ const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment></Payment>,
+      },
+      {
+        path: "succespayment",
+        element: <PaymentHistory></PaymentHistory>,
       },
     ],
   },

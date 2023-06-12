@@ -7,12 +7,12 @@ const Banner = () => {
   return (
     <AwesomeSlider className="aws-btn" bullets={false}>
       <div data-src={slider2}>
-        <div className="absolute top-48 left-28 space-y-4">
+        <div className="absolute top-52 left-28 space-y-4 hidden lg:block">
           <p className=" font-bold text-5xl text-blue-600">Children.</p>
-          <p className=" font-bold text-5xl text-blue-600">
+          <p className=" font-bold text-lg lg:text-5xl text-blue-600">
             Art & craft School.
           </p>
-          <p className="text-slate-700">
+          <p className="text-slate-700 ">
             Children's Academy will provide a stimulating and <br /> safe
             environment for children ages three month
           </p>
@@ -22,7 +22,7 @@ const Banner = () => {
         </div>
       </div>
       <div data-src={slider2}>
-        <div className="absolute top-20 left-28 space-y-4">
+        <div className="absolute top-52 left-28 space-y-4 hidden lg:block">
           <p className=" font-bold text-5xl text-blue-600">Children.</p>
           <p className=" font-bold text-4xl text-blue-600">
             Art & craft School.

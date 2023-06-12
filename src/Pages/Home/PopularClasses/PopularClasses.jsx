@@ -3,18 +3,20 @@ import SectionTitle from "../../../Coponents/SectionTitle";
 import { useEffect } from "react";
 import { useState } from "react";
 import PopularClassCard from "./PopularClassCard";
+import useAxios from "../../../Hooks/useAxios";
 
 const PopularClasses = () => {
   const [popularClass, setPopularClass] = useState([]);
+  const [axiosSecure] = useAxios();
   useEffect(() => {
-    fetch("https://art-x-server.vercel.app/popularclass")
-      .then((res) => res.json())
-      .then((data) => setPopularClass(data));
+    axiosSecure("/popularclass").then((response) => {
+      setPopularClass(response.data);
+    });
   }, []);
   const mostPopular = popularClass.slice(0, 6);
   console.log(popularClass);
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="lg:w-11/12 w-full mx-auto">
       <SectionTitle
         heading={"Our Poupular Class"}
         subHeading={

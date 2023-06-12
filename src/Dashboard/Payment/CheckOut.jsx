@@ -95,6 +95,19 @@ const CheckOut = ({ price, stateData }) => {
       })
         .then((res) => res.json())
         .then((data) => console.log(data));
+      // Payment save
+      fetch(`http://localhost:5000/paymentsucces`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          trassitionID: paymentIntent.id,
+          name: stateData?.name,
+          email: stateData?.email,
+          price: stateData?.price,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
     }
   };
 

@@ -4,9 +4,7 @@ import CheckOut from "./CheckOut";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLocation } from "react-router-dom";
 
-const stripePromise = loadStripe(
-  "pk_test_51NI12FJ2Ak22GPsk00KCxTgnT9xkXs7UvXxIZrXpADgNJMFwaMz1xj6TBQHP1kf9wfRD3SW63o9HwRfcTufgtExh00Dw1LpfL1"
-);
+const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_KEY}`);
 const Payment = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);

@@ -20,7 +20,7 @@ const PopularClassCard = ({ popular }) => {
           availablesit
             ? "h-96 p-5 text-black"
             : "h-64 p-0 bg-blue-300 text-white"
-        } w-96 h-96 bg-base-100 border-4 border-dashed border-blue-300  shadow-xl`}>
+        } w-full h-96 bg-base-100 border-4 border-dashed border-blue-300  shadow-xl`}>
         <figure>
           <img src={photo} alt="Shoes" />
         </figure>

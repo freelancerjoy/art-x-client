@@ -4,6 +4,7 @@ import { FaHome } from "react-icons/fa";
 import useAdmin from "../Hooks/useAdmin";
 import useInstractor from "../Hooks/useInstractor";
 import useStudent from "../Hooks/UseStudent";
+import { MdPayments } from "react-icons/md";
 
 import {
   AiFillCloud,
@@ -18,7 +19,7 @@ const Dashboard = () => {
   const [isAdmin, isAdminLoading] = useAdmin();
   const [isInstractor, isInstractorLoading] = useInstractor();
   const [isStudent, isStudentLoading] = useStudent();
-  console.log(isAdmin);
+
   return (
     <div>
       <div className="drawer lg:drawer-open bg-white">
@@ -27,7 +28,7 @@ const Dashboard = () => {
           <label
             htmlFor="my-drawer-2"
             className="btn btn-primary drawer-button lg:hidden">
-            Open drawer
+            Open Menu
           </label>
           <div className="pt-20 ">
             <Outlet></Outlet>
@@ -69,6 +70,12 @@ const Dashboard = () => {
                     <AiFillCloud></AiFillCloud>My Classes
                   </Link>
                 </li>
+                <li>
+                  <Link to="/dashboard/myclasses">
+                    {" "}
+                    <AiFillCloud></AiFillCloud>My Classes
+                  </Link>
+                </li>
               </>
             )}
 
@@ -82,6 +89,11 @@ const Dashboard = () => {
                 <li>
                   <Link to="/dashboard/mynroledclasses">
                     <AiFillCrown></AiFillCrown> My Enroled Classes
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/succespayment">
+                    <MdPayments></MdPayments> Payment History
                   </Link>
                 </li>
               </>

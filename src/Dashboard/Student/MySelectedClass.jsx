@@ -16,9 +16,9 @@ const MySelectedClass = () => {
 
   return (
     <div>
-      <div className="w-11/12 mx-auto">
-        <div className="overflow-x-auto max-h-max w-full">
-          <table className="table w-full border-2 border-blue-200 border-dashed">
+      <div className="w-11/12 mx-auto ">
+        <div className=" overflow-x-auto">
+          <table className="table min-w-screen">
             {/* head */}
             <thead>
               <tr>

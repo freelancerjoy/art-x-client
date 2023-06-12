@@ -38,7 +38,7 @@ const Review = () => {
                   <p>Client</p>
                 </div>
                 <div>
-                  <p className="text-left mr-5">
+                  <p className="text-left mr-5 lg:block hidden">
                     My younger son returns very happy with all activities
                     happening at your school every day. I am glad that my son is
                     being taught in your school. You have the motst qualified
@@ -65,7 +65,7 @@ const Review = () => {
                   <p>Client</p>
                 </div>
                 <div>
-                  <p className="text-left mr-5">
+                  <p className="text-left mr-5 lg:block hidden">
                     My younger son returns very happy with all activities
                     happening at your school every day. I am glad that my son is
                     being taught in your school. You have the motst qualified
@@ -92,7 +92,7 @@ const Review = () => {
                   <p>Client</p>
                 </div>
                 <div>
-                  <p className="text-left mr-5">
+                  <p className="text-left mr-5 lg:block hidden">
                     My younger son returns very happy with all activities
                     happening at your school every day. I am glad that my son is
                     being taught in your school. You have the motst qualified
@@ -119,7 +119,7 @@ const Review = () => {
                   <p>Client</p>
                 </div>
                 <div>
-                  <p className="text-left mr-5">
+                  <p className="text-left mr-5 lg:block hidden">
                     My younger son returns very happy with all activities
                     happening at your school every day. I am glad that my son is
                     being taught in your school. You have the motst qualified

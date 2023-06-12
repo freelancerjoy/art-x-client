@@ -117,10 +117,19 @@ const Register = () => {
                 </label>
                 <input
                   {...register("password", { required: true, maxLength: 20 })}
-                  type="password"
+                  type={!showPassword ? "password" : "text"}
                   placeholder="password"
                   className="p-2 pl-4 border rounded-full border-blue-500"
                 />
+                <button
+                  className="-mt-7 ml-72 text-lg"
+                  onClick={togglePasswordVisibility}>
+                  {showPassword ? (
+                    <BsEyeSlashFill></BsEyeSlashFill>
+                  ) : (
+                    <BsEyeFill></BsEyeFill>
+                  )}
+                </button>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Confirm Password</span>
@@ -130,19 +139,10 @@ const Register = () => {
                       required: true,
                       maxLength: 20,
                     })}
-                    type={!showPassword ? "password" : "text"}
+                    type="password"
                     placeholder="confirm Password"
                     className="p-2 pl-4 border rounded-full border-blue-500"
                   />
-                  <button
-                    className="-mt-7 ml-72 text-lg"
-                    onClick={togglePasswordVisibility}>
-                    {showPassword ? (
-                      <BsEyeSlashFill></BsEyeSlashFill>
-                    ) : (
-                      <BsEyeFill></BsEyeFill>
-                    )}
-                  </button>
                 </div>
                 <div className="form-control">
                   <label className="label">

@@ -10,11 +10,11 @@ const ClassSingleCard = ({ myClass }) => {
     instractorname,
     availablesit,
     status,
-    enrolled
+    enrolled,
   } = singleClass;
   return (
     <div>
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card w-full bg-base-100 shadow-xl">
         <figure>
           <img src={myClass.photo} alt="Shoes" />
         </figure>

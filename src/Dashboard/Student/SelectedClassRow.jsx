@@ -15,7 +15,7 @@ const SelectedClassRow = ({ singleClass }) => {
   } = singleClass;
   const queryParam = new URLSearchParams(singleClass).toString();
   return (
-    <tr>
+    <tr className="border-2 ">
       <th>
         <label>
           <input type="checkbox" className="checkbox" />

@@ -1,10 +1,35 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { AuthContest } from "../../Provider/AuthProvider";
+import { useContext } from "react";
 
 const Login = () => {
+  const { signIn, googleSignIn } = useContext(AuthContest);
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    signIn(data?.email, data?.password);
+  };
+
+  const handleGoolge = () => {
+    googleSignIn().then((result) => {
+      const user = result.user;
+      console.log(user);
+      const saveUserDatabase = {
+        name: user?.displayName,
+        email: user?.email,
+        photo: user?.photoURL,
+        role: "student",
+      };
+      console.log(user?.photoURL);
+      fetch("https://art-x-server.vercel.app/users", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(saveUserDatabase),
+      });
+    });
+  };
+
   return (
     <div>
       <div className="pt-20 min-h-screen bg-base-200">
@@ -52,7 +77,9 @@ const Login = () => {
                 </button>
               </div>
               <div className="divider"> or</div>
-              <button className="w-10 mx-auto h-10 flex items-center justify-center bg-white rounded-full border-2 border-blue-500">
+              <button
+                onClick={handleGoolge}
+                className="w-10 mx-auto h-10 flex items-center justify-center bg-white rounded-full border-2 border-blue-500">
                 <FcGoogle className="text-3xl text-center p-1"></FcGoogle>
               </button>
             </form>

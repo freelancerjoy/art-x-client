@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContest } from "../../Provider/AuthProvider";
+import { useState } from "react";
 
 const Register = () => {
   const { userCreate, profileUpdate, googleSignIn } = useContext(AuthContest);
+  const [error, setEror] = useState("");
 
   const {
     register,
@@ -16,6 +18,10 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    if (data?.password !== data?.confirmPassword) {
+      setEror("Password not matching");
+      return;
+    }
     userCreate(data?.email, data?.password)
       .then((result) => {
         const user = result.user;
@@ -129,15 +135,15 @@ const Register = () => {
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     If you Are New{" "}
-                    <Link to="/register">
+                    <Link to="/login">
                       <span className="text-blue-600 underline">
-                        PLease Register
+                        PLease Login
                       </span>
                     </Link>
                   </a>
                 </label>
               </div>
-
+              <p className="text-red-600 font-bold"> {error}</p>
               <div className="form-control mt-2">
                 <button className="btn btn-sm border-0 rounded-tl-full rounded-br-full px-8 bg-blue-500 text-white">
                   Register

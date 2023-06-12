@@ -32,8 +32,7 @@ const MySelectedClass = () => {
                 <th>Class name</th>
                 <th>Instructor name</th>
                 <th>Available seats</th>
-                <th>Price </th>
-                <th>Action </th>
+                <th>Price</th>
               </tr>
             </thead>
             <tbody>

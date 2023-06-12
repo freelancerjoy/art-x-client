@@ -56,7 +56,10 @@ const ClassCard = ({ approveClass, isAdmin, isInstractor }) => {
   };
   return (
     <div>
-      <div class="card card-compact w-96 h-96 bg-base-100 border-4 border-dashed border-blue-300 p-5 shadow-xl">
+      <div
+        class={`card card-compact w-96 h-96 ${
+          availablesit == 0 ? "bg-red-500 text-white" : "bg-base-100 "
+        } bg-base-100 border-4 border-dashed border-blue-300 p-5 shadow-xl`}>
         <figure>
           <img src={photo} alt="Shoes" />
         </figure>
@@ -81,7 +84,8 @@ const ClassCard = ({ approveClass, isAdmin, isInstractor }) => {
               disabled={
                 (isAdmin?.admin && true) ||
                 (isInstractor.instractor && true) ||
-                (select && true)
+                (select && true) ||
+                availablesit == 0
               }>
               Select
             </button>

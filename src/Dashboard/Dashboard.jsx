@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
-import useAdmin from "../../Hooks/useAdmin";
-import useInstractor from "../../Hooks/useInstractor";
-import useStudent from "../../Hooks/UseStudent";
+import useAdmin from "../Hooks/useAdmin";
+import useInstractor from "../Hooks/useInstractor";
+import useStudent from "../Hooks/UseStudent";
 
 import {
   AiFillCloud,
@@ -21,7 +21,7 @@ const Dashboard = () => {
   console.log(isAdmin);
   return (
     <div>
-      <div className="drawer lg:drawer-open">
+      <div className="drawer lg:drawer-open bg-white">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col ">
           <label
@@ -29,7 +29,7 @@ const Dashboard = () => {
             className="btn btn-primary drawer-button lg:hidden">
             Open drawer
           </label>
-          <div className="pt-20">
+          <div className="pt-20 ">
             <Outlet></Outlet>
           </div>
         </div>

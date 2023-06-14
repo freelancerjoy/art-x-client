@@ -3,6 +3,7 @@ import { AuthContest } from "../../Provider/AuthProvider";
 import SelectedClassRow from "./SelectedClassRow";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../Hooks/useAxios";
+import { HashLoader } from "react-spinners";
 
 const MySelectedClass = () => {
   const { user, loading } = useContext(AuthContest);
@@ -43,12 +44,16 @@ const MySelectedClass = () => {
               </tr>
             </thead>
             <tbody>
-              {selectedClasses?.map((singleClass) => (
-                <SelectedClassRow
-                  key={singleClass._id}
-                  singleClass={singleClass}
-                  refetch={refetch}></SelectedClassRow>
-              ))}
+              {selectedClasses ? (
+                selectedClasses?.map((singleClass) => (
+                  <SelectedClassRow
+                    key={singleClass._id}
+                    singleClass={singleClass}
+                    refetch={refetch}></SelectedClassRow>
+                ))
+              ) : (
+                <HashLoader color="#36d7b7" />
+              )}
             </tbody>
           </table>
         </div>

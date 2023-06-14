@@ -28,7 +28,7 @@ const Dashboard = () => {
         <div className="drawer-content flex flex-col ">
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden">
+            className="btn btn-sm border-0 rounded-tl-full rounded-br-full px-8 bg-blue-500 text-white drawer-button lg:hidden">
             Open Menu
           </label>
           <div className="pt-20 ">

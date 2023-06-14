@@ -78,11 +78,11 @@ const ClassCard = ({ approveClass, isAdmin, isInstractor }) => {
       <div
         class={`card card-compact w-full h-96 ${
           availablesit == 0 ? "bg-red-500 text-white" : "bg-base-100 "
-        } bg-base-100 border-4 border-dashed border-blue-300 p-5 shadow-xl`}>
-        <figure>
+        } bg-base-100 border-4 border-dashed border-blue-300 p-2 shadow-xl`}>
+        <figure className="h-80">
           <img src={photo} alt="Shoes" />
         </figure>
-        <div class="card-body p-4 ">
+        <div class="card-body space-y-0">
           <h2 class="card-title">{name}</h2>
           <p>
             <span className="font-bold">Instrator Name: </span>

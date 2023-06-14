@@ -13,6 +13,8 @@
 - daisyUI ( Tailwind CSS UI components )
 - React js (JavaScript library),
 - React Hook form
+- Node JS,
+- Express JS
 
 # Routing
 

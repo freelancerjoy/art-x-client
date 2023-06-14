@@ -117,8 +117,8 @@ const CheckOut = ({ price, stateData }) => {
   return (
     <>
       {" "}
-      <div className="bg-blue-50 p-5 lg:p-20 rounded-lg w-full ">
-        <form className="w-1/2" onSubmit={handleSubmit}>
+      <div className="bg-blue-50 p-5 lg:px-10 lg:py-20 rounded-lg w-full ">
+        <form className="lg:w-11/12" onSubmit={handleSubmit}>
           <CardElement
             options={{
               style: {
@@ -127,6 +127,7 @@ const CheckOut = ({ price, stateData }) => {
                   color: "#424770",
                   "::placeholder": {
                     color: "#aab7c4",
+                    backgroundColor: "#fff",
                   },
                 },
                 invalid: {
@@ -136,7 +137,7 @@ const CheckOut = ({ price, stateData }) => {
             }}
           />
           <button
-            className="btn btn-sm border-0 rounded-tl-full rounded-br-full px-8 mt-8 bg-blue-500 text-white"
+            className="btn btn-sm border-0 text-center rounded-tl-full rounded-br-full px-8 mt-8 bg-blue-500 text-white"
             type="submit"
             disabled={!stripe || !clientSecret}>
             Pay

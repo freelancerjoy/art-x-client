@@ -19,6 +19,7 @@ export const AuthContest = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loder, setLoder] = useState(false);
   console.log(user);
 
   // user create email and password
@@ -57,6 +58,8 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     loading,
+    loder,
+    setLoading,
     signIn,
     userCreate,
     profileUpdate,

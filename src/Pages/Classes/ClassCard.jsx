@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { AuthContest } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { useRef } from "react";
 
 const ClassCard = ({ approveClass, isAdmin, isInstractor }) => {
   const { user } = useContext(AuthContest);
-
+  const btnRef = useRef(null);
   const {
     _id,
     name,
@@ -17,6 +18,7 @@ const ClassCard = ({ approveClass, isAdmin, isInstractor }) => {
     select,
   } = approveClass;
   console.log(select);
+
   const handleSelect = (_id) => {
     if (!user) {
       Swal.fire({
@@ -25,7 +27,14 @@ const ClassCard = ({ approveClass, isAdmin, isInstractor }) => {
         text: "You can see after login!",
       });
     }
-
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "You Class add Succesfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    btnRef.current.disabled = true;
     fetch(`https://art-x-server.vercel.app/selectclass?email=${user?.email}`, {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -84,11 +93,12 @@ const ClassCard = ({ approveClass, isAdmin, isInstractor }) => {
             <span className="text-blue-600"> {availablesit}</span>
           </p>
           <p>
-            <span className="font-bold">Price:</span>{" "}
-            <span className="text-blue-600">{price}</span>
+            <span className="font-bold">Price: </span>{" "}
+            <span className="text-blue-600">${price}</span>
           </p>
           <div class="card-actions justify-end">
             <button
+              ref={btnRef}
               onClick={() => handleSelect(_id)}
               class="btn btn-sm border-0 rounded-tl-full rounded-br-full px-8 bg-blue-400 text-white"
               disabled={

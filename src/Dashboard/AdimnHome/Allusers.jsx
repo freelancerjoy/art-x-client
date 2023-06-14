@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import useInstractor from "../../Hooks/useInstractor";
 
 const Allusers = () => {
   const [users, setUsers] = useState();
   const [relode, setrelode] = useState(false);
+  const [isInstractor] = useInstractor();
   useEffect(() => {
     fetch("https://art-x-server.vercel.app/users")
       .then((res) => res.json())
@@ -57,13 +59,19 @@ const Allusers = () => {
                     onClick={() =>
                       handleUserPermission(user?._id, "instractor")
                     }
-                    disabled={user?.role === "instractor" && true}
-                    className="btn btn-sm bg-orange-600 text-white">
+                    disabled={
+                      (user?.role === "instractor" && true) ||
+                      (user?.role === "admin" && true)
+                    }
+                    className="btn btn-sm mr-3 bg-orange-600 text-white">
                     Make Instractor
                   </button>
                   <button
                     onClick={() => handleUserPermission(user?._id, "admin")}
-                    disabled={user?.role === "admin" && true}
+                    disabled={
+                      (user?.role === "admin" && true) ||
+                      (user?.role === "instractor" && true)
+                    }
                     className="btn btn-sm bg-green-600 text-white pr-3">
                     Make Admin
                   </button>

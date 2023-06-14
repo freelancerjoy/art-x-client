@@ -1,19 +1,26 @@
 import React, { useContext } from "react";
-import { useState } from "react";
-import { useEffect } from "react";
 import { AuthContest } from "../../Provider/AuthProvider";
 import SelectedClassRow from "./SelectedClassRow";
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../../Hooks/useAxios";
 
 const MySelectedClass = () => {
-  const { user } = useContext(AuthContest);
-  const [selectedClasses, setClasses] = useState([]);
+  const { user, loading } = useContext(AuthContest);
 
-  useEffect(() => {
-    fetch(`https://art-x-server.vercel.app/selectclass?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => setClasses(data));
-  }, [user]);
+  const [axiosSecure] = useAxios();
 
+  const { refetch, data: selectedClasses = [] } = useQuery(
+    {
+      queryKey: ["selectclass"],
+      enabled: !loading,
+      queryFn: async () => {
+        const res = await axiosSecure(`/selectclass?email=${user?.email}`);
+        console.log("res from axios", res);
+        return res.data;
+      },
+    },
+    [user]
+  );
   return (
     <div>
       <div className="w-11/12 mx-auto ">
@@ -39,7 +46,8 @@ const MySelectedClass = () => {
               {selectedClasses?.map((singleClass) => (
                 <SelectedClassRow
                   key={singleClass._id}
-                  singleClass={singleClass}></SelectedClassRow>
+                  singleClass={singleClass}
+                  refetch={refetch}></SelectedClassRow>
               ))}
             </tbody>
           </table>

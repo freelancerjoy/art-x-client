@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 import "./Review.css";
 // import required modules
 import { Navigation } from "swiper";
-import SectionTitle from "../../../Coponents/SectionTitle";
+import SectionTitle from "../../../Components/SectionTitle";
 
 const Review = () => {
   return (

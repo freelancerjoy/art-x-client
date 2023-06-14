@@ -75,7 +75,7 @@ const Login = () => {
                   className="p-2 pl-4 border rounded-full border-blue-500"
                 />
                 <button
-                  className="-mt-7 ml-72 text-lg"
+                  className="-mt-7 lg:ml-72 ml-60 text-lg"
                   onClick={togglePasswordVisibility}>
                   {showPassword ? (
                     <BsEyeSlashFill></BsEyeSlashFill>

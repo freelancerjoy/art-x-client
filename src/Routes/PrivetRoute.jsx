@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { ScaleLoader } from "react-spinners";
 
 const PrivetRoute = ({ children }) => {
-  const { user, loading } = useContext(AuthContest);
+  const { user, loading,  } = useContext(AuthContest);
   const location = useLocation();
 
   if (loading) {

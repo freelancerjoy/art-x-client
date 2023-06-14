@@ -10,6 +10,7 @@ const MyClasses = () => {
       .then((res) => res.json())
       .then((data) => setMyclasses(data));
   }, [user]);
+  console.log(myClasses);
   return (
     <div>
       <h1 className="font-bold text-2xl my-4 text-blue-600">
@@ -25,9 +26,7 @@ const MyClasses = () => {
               <th>Class Name</th>
               <th>Total Enroled Students</th>
               <th>Status</th>
-              <th >
-                Feedback
-              </th>
+              <th>Feedback</th>
             </tr>
           </thead>
           <tbody>
@@ -57,7 +56,7 @@ const MyClasses = () => {
                   } "text-md font-bold"`}>
                   {myClass?.status}
                 </td>
-                <td>{myClass?.feedback}</td>
+                <td>{myClass?.feedback?.feedback}</td>
               </tr>
             ))}
           </tbody>

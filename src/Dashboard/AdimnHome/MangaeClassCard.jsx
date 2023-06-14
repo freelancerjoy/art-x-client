@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Swal from "sweetalert2";
 
 const MangaeClassCard = ({ singleClass }) => {
   const {
@@ -20,7 +21,29 @@ const MangaeClassCard = ({ singleClass }) => {
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
-  const handleFeedback = (_id) => {};
+  const handleFeedback = async (_id) => {
+    const result = await Swal.fire({
+      title: "Give feedback",
+      input: "text",
+      inputLabel: "Value",
+      inputPlaceholder: "Write your feedback",
+      showCancelButton: true,
+      cancelButtonText: "Cancel",
+      confirmButtonText: "Submit",
+    });
+
+    if (result.isConfirmed) {
+      const value = result.value;
+      console.log("Entered value:", value);
+      fetch(`https://art-x-server.vercel.app/feedback/${_id}`, {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ feedback: value }),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+    }
+  };
   return (
     <>
       {/* Class Image, Class name, Instructor name, Instructor email, Available seats, Price, Status(pending/approved/denied) 3 buttons( Approve, Deny and send feedback). */}
@@ -68,7 +91,11 @@ const MangaeClassCard = ({ singleClass }) => {
         </td>
         <td>
           {" "}
-          <button className="btn btn-sm bg-blue-500">feedback</button>
+          <button
+            onClick={() => handleFeedback(_id)}
+            className="btn btn-sm bg-blue-500">
+            feedback
+          </button>
         </td>
       </tr>
     </>

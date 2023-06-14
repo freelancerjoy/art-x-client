@@ -42,6 +42,7 @@ const SelectedClassRow = ({ singleClass, refetch }) => {
       }
     });
   };
+
   return (
     <tr className="border-2 ">
       <th>

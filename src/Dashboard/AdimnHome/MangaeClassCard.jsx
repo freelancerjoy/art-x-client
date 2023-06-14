@@ -78,13 +78,15 @@ const MangaeClassCard = ({ singleClass }) => {
         <td>
           <button
             onClick={() => handleApprove(_id, "approved")}
-            disabled={status === "approved" && true}
+            disabled={status === "approved" && true || (status === "denied" && true) }
             className="btn btn-sm my-2 bg-green-500">
             Approved
           </button>
           <button
             onClick={() => handleApprove(_id, "denied")}
-            disabled={status === "denied" && true}
+            disabled={
+              (status === "denied" && true) || (status === "approved" && true)
+            }
             className="btn btn-sm bg-red-600">
             Denied
           </button>
@@ -93,7 +95,7 @@ const MangaeClassCard = ({ singleClass }) => {
           {" "}
           <button
             onClick={() => handleFeedback(_id)}
-            className="btn btn-sm bg-blue-500">
+            className={`btn btn-sm bg-blue-500 ${(status === "denied" && true) ? "block": "hidden"}`}>
             feedback
           </button>
         </td>

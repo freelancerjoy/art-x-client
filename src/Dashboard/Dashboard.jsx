@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import useAdmin from "../Hooks/useAdmin";
 import useInstractor from "../Hooks/useInstractor";
 import useStudent from "../Hooks/UseStudent";
 import { MdPayments } from "react-icons/md";
+import { BarLoader } from "react-spinners";
 
 import {
   AiFillCloud,
@@ -43,54 +44,67 @@ const Dashboard = () => {
                 <FaHome></FaHome> Home
               </Link>
             </li>
-            {isAdmin?.admin === true && (
-              <>
-                <li>
-                  <Link to="/dashboard/manageclases">
-                    <AiFillUnlock></AiFillUnlock> Manage Classes
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/dashboard/users">
-                    <AiOutlineUsergroupAdd></AiOutlineUsergroupAdd> Manage Users
-                  </Link>
-                </li>
-              </>
+            {isAdminLoading ? (
+              <BarLoader color="#3B82F6" />
+            ) : (
+              isAdmin?.admin === true && (
+                <>
+                  <li>
+                    <Link to="/dashboard/manageclases">
+                      <AiFillUnlock></AiFillUnlock> Manage Classes
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/dashboard/users">
+                      <AiOutlineUsergroupAdd></AiOutlineUsergroupAdd> Manage
+                      Users
+                    </Link>
+                  </li>
+                </>
+              )
             )}
-            {isInstractor?.instractor === true && (
-              <>
-                <li>
-                  <Link to="/dashboard/addnewclass">
-                    <AiOutlineAppstoreAdd></AiOutlineAppstoreAdd> Add a Class
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/dashboard/myclasses">
-                    {" "}
-                    <AiFillCloud></AiFillCloud>My Classes
-                  </Link>
-                </li>
-              </>
+            {isInstractorLoading ? (
+              <BarLoader color="#3B82F6" />
+            ) : (
+              isInstractor?.instractor === true && (
+                <>
+                  <li>
+                    <Link to="/dashboard/addnewclass">
+                      <AiOutlineAppstoreAdd></AiOutlineAppstoreAdd> Add a Class
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/dashboard/myclasses">
+                      {" "}
+                      <AiFillCloud></AiFillCloud>My Classes
+                    </Link>
+                  </li>
+                </>
+              )
             )}
 
-            {isStudent.student === true && (
-              <>
-                <li>
-                  <Link to="/dashboard/myslectedclasses">
-                    <AiFillEdit></AiFillEdit> My Selected Classes
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/dashboard/mynroledclasses">
-                    <AiFillCrown></AiFillCrown> My Enroled Classes
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/dashboard/succespayment">
-                    <MdPayments></MdPayments> Payment History
-                  </Link>
-                </li>
-              </>
+            {isStudentLoading ? (
+              <BarLoader color="#3B82F6" />
+            ) : (
+              isStudent.student === true && (
+                <>
+                  <li>
+                    <Link to="/dashboard/myslectedclasses">
+                      <AiFillEdit></AiFillEdit> My Selected Classes
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/dashboard/mynroledclasses">
+                      <AiFillCrown></AiFillCrown> My Enroled Classes
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/dashboard/succespayment">
+                      <MdPayments></MdPayments> Payment History
+                    </Link>
+                  </li>
+                </>
+              )
             )}
 
             <div class="divider"></div>
